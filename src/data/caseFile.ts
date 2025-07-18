@@ -70,9 +70,17 @@ export const caseFileData: CaseFile = {
         { label: '', content: 'Debemos partir el presente análisis de dos premisas concebidas como procesos distintos e independientes uno del otro, y prueba fehaciente de ello es que cada uno tiene su procedimiento que delimita su esfera jurídica y su ámbito de aplicación. Si bien es cierto que esta confusión de procesos pudiera tener sentido debido a que el sujeto y objeto son los mismos, es decir, el mismo proveedor y el mismo contrato son susceptibles de dar inicio a ambos procedimientos, esto no es justificación para pretender ejecutarlos por la misma vía, en atención al principio de especialidad de la ley, al principio de exacta aplicación de la ley, al principio de legalidad, al principio de seguridad jurídica, en el principio prohibitivo de aplicar penas por simple analogía, en el principio de administrar justicia por leyes e instancias previamente establecidas, entre muchos otros más de esta misma jerarquía constitucional, imperativos categóricos que no dan lugar a interpretación contraria alguna.' }
       ],
       followUp: {
-        eventId: 'evt-real-01',
+        eventId: 'evt-conciliacion-01',
         label: 'Empezar análisis'
       }
+    },
+    {
+      id: 'evt-conciliacion-01',
+      date: '2024-11-04',
+      title: 'CONCILIACIÓN-CONC.05/2024',
+      party: 'Análisis',
+      documentIds: [],
+      description: []
     },
     {
       id: 'evt-real-01',

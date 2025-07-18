@@ -39,6 +39,7 @@ export const getEventDisplayDetails = (event: { party: Party, title: string }) =
 
 export const simpleExplanations: Record<string, string> = {
     'evt-intro-01': "La <strong>Coordinación General Jurídica</strong> señala al <strong>Almacén de Víveres</strong> como el área responsable de que el procedimiento de conciliación, con número de expediente CONC.05/2024, se encuentre detenido y sin resolución debido a que la información presentada sobre la situación de las órdenes de compra es insuficiente, discordante y en algunos casos nula.",
+    'evt-conciliacion-01': "Este es el procedimiento de conciliación que se encuentra detenido.",
     'evt-real-01': "La confusión antes mencionada no fue ni es impedimento para que el Almacen de Viveres proporcione la información con oportunidad, veamos desde cuando se tiene información relativa a las ordenes de compra en cuestión",
     'evt-real-03': "Como pasó el tiempo y no se resolvió, la oficina legal insiste y vuelve a pedir la información sobre un nuevo grupo de órdenes.",
     'evt-real-02': "El almacén contesta la segunda solicitud con un informe detallado para aclarar la situación de cada orden.",
@@ -69,10 +70,11 @@ export const documentGuides: Record<string, { description: string; points: strin
     }
 };
 
-export const tourPath = ['evt-intro-01', 'evt-real-01', 'evt-real-03', 'evt-real-02', 'evt-real-04', 'evt-real-05'];
+export const tourPath = ['evt-intro-01', 'evt-conciliacion-01', 'evt-real-01', 'evt-real-03', 'evt-real-02', 'evt-real-04', 'evt-real-05'];
 
 export const tourDescriptions: Record<string, string> = {
     'evt-intro-01': "El Almacén de Víveres estima que la Coordinación General Jurídica está realizando una superposición indebida del proceso de penalización por atraso en la entrega, dentro del contexto de una conciliación.",
+    'evt-conciliacion-01': "Este es el procedimiento de conciliación que se encuentra detenido.",
     'evt-real-01': "La Coordinación Jurídica (CGJ) inicia el proceso con una primera solicitud de información.",
     'evt-real-03': "Meses después, la CGJ envía una segunda solicitud, indicando que el problema persiste.",
     'evt-real-02': "El Almacén responde a la segunda solicitud, adjuntando un informe detallado. Revísalo y continúa.",
