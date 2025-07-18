@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import type { Document, TimelineEvent } from '../types/types';
+import type { Document, TimelineEvent } from '../types';
 import { partyColorConfig, simpleExplanations, tourDescriptions, KEY_OCS, getFileIcon, legalFramework } from '../config/constants';
 
 // --- Sub-components for Legal Framework ---
@@ -51,16 +51,21 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
     const [isRevealing, setIsRevealing] = useState(false);
     const [activeTab, setActiveTab] = useState<Tab>('summary');
 
+    const isConciliacionEvent = event?.id === 'evt-conciliacion-01';
+
     useEffect(() => {
         setIsRevealing(false);
-        if (event?.party !== 'Análisis' && activeTab === 'legal') {
+        if (
+            (event?.party !== 'Análisis' && activeTab === 'legal') ||
+            (isConciliacionEvent && (activeTab === 'legal' || activeTab === 'analysis'))
+        ) {
             setActiveTab('summary');
         } else if (!activeTab) {
             setActiveTab('summary');
         }
         const timer = setTimeout(() => setIsRevealing(true), 100);
         return () => clearTimeout(timer);
-    }, [event?.id, activeTab]);
+    }, [event?.id, activeTab, isConciliacionEvent]);
 
     if (!event) {
         return (
@@ -96,7 +101,7 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
     return (
         <div className={`flex-grow flex flex-col bg-white dark:bg-gray-800/50 ${isAnalisis ? `border-t-2 ${colors.border}` : `border-t-4 ${colors.border}`} ${isRevealing ? 'is-revealing' : ''} ${gammaActive && event ? 'gamma-target' : ''}`}
              style={(gammaActive && event) ? { '--pulse-color': `var(--party-${event.party.toLowerCase()})` } as React.CSSProperties : {}}>
-            
+
             <div className="w-full bg-gray-200 dark:bg-gray-700 h-1.5">
                 <div className={`h-1.5 rounded-r-full ${colors.bg.replace('/10', '')}`} style={{ width: `${progressPercentage}%`, transition: 'width 0.5s ease-out' }}></div>
             </div>
@@ -104,8 +109,8 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
             <div className="flex flex-col flex-grow min-h-0">
                 <div className="flex border-b border-gray-200 dark:border-gray-700">
                     <TabButton tab="summary" label="Resumen" icon="fa-lightbulb" />
-                    {isAnalisis && <TabButton tab="legal" label="Marco Normativo" icon="fa-scale-balanced" />}
-                    <TabButton tab="analysis" label="Análisis del Hecho" icon="fa-file-alt" />
+                    {isAnalisis && !isConciliacionEvent && <TabButton tab="legal" label="Marco Normativo" icon="fa-scale-balanced" />}
+                    {!isConciliacionEvent && <TabButton tab="analysis" label="Análisis del Hecho" icon="fa-file-alt" />}
                     <TabButton tab="docs" label="Documentos" icon="fa-paperclip" />
                 </div>
 
@@ -113,19 +118,19 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                     <div key={activeTab} className="fade-in p-6 lg:p-8">
                         {activeTab === 'summary' && (
                             <div className="bg-[var(--focus-cognitive)] border-l-4 border-[var(--focus-cognitive-border)] p-4 rounded-r-lg">
-                                <p className="text-[var(--text-main)] opacity-90" dangerouslySetInnerHTML={{ __html: simpleExplanations[event.id] }}></p>
+                                <p className="text-[var(--text-main)] opacity-90" dangerouslySetInnerHTML={{ __html: simpleExplanations[event.id] || tourDescriptions[event.id] }}></p>
                             </div>
                         )}
 
-                        {activeTab === 'legal' && isAnalisis && (
+                        {activeTab === 'legal' && isAnalisis && !isConciliacionEvent && (
                            <div className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
                                {legalFramework.map((category, index) => (
                                    <AccordionItem key={index} category={category} isInitiallyOpen={false} />
                                ))}
                            </div>
                         )}
-                        
-                        {activeTab === 'analysis' && (
+
+                        {activeTab === 'analysis' && !isConciliacionEvent && (
                             <div>
                                 <div className="mb-6 p-4 bg-teal-50 dark:bg-teal-950/50 border-l-4 border-teal-500 text-teal-800 dark:text-teal-200 rounded-r-lg italic">
                                   <p>{tourDescriptions[event.id]}</p>
