@@ -79,6 +79,7 @@ export const caseFileData: CaseFile = {
       date: '2024-11-05',
       title: 'CGJ-OFICIO 1',
       description: [
+        { label: 'Resumen', content: 'La confusión antes mencionada no fue ni es impedimento para que el Almacen de Viveres proporcione la información con oportunidad, veamos desde cuando se tiene información relativa a las ordenes de compra en cuestión' },
         { label: 'Asunto', content: 'Solicitud de información para determinar incumplimientos.' },
         { label: '', content: 'Se solicita informar en un plazo de 2 días hábiles sobre el estado de entrega de las órdenes de compra que se enlistan a continuación:' },
       ],
