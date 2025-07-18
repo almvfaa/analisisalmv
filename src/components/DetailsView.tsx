@@ -73,7 +73,26 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                         </div>
                     </div>
 
-                    <div className="py-8 reveal-item delay-2">
+                    {/* --- Marco Normativo Section --- */}
+                    <div className="py-6 reveal-item delay-2">
+                        <div className="bg-sky-50 dark:bg-sky-950/50 border-l-4 border-sky-500 p-4 rounded-r-lg">
+                            <div className="flex">
+                                <div className="flex-shrink-0">
+                                    <i className="fas fa-scale-balanced text-sky-800 dark:text-sky-200 text-xl"></i>
+                                </div>
+                                <div className="ml-3">
+                                    <p className="font-semibold text-sky-800 dark:text-sky-100">Marco Normativo Aplicable</p>
+                                    <ul className="mt-2 list-disc list-inside text-sm text-sky-700 dark:text-sky-300 space-y-1">
+                                      <li>Ley de Adquisiciones, Arrendamientos y Servicios del Sector Público.</li>
+                                      <li>Reglamento de la Ley de Adquisiciones.</li>
+                                      <li>Políticas, Bases y Lineamientos en Materia de Adquisiciones.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="py-8 reveal-item delay-3">
                         <div className="mt-2 mb-6 p-4 bg-teal-50 dark:bg-teal-950/50 border-l-4 border-teal-500 text-teal-800 dark:text-teal-200 rounded-r-lg italic">
                             <p>{tourDescriptions[event.id]}</p>
                         </div>
@@ -82,13 +101,14 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                                 <div key={index}>
                                     {item.label && <dt className="font-semibold text-gray-800 dark:text-gray-100"><i className="fas fa-file-alt mr-2 text-gray-500"></i>{item.label}</dt>}
                                     <dd className={`whitespace-pre-line ${item.label ? 'pl-1' : ''}`} dangerouslySetInnerHTML={{ __html: item.content }}></dd>
+
                                 </div>
                             ))}
                         </dl>
                     </div>
 
                     {event.party === 'CGJ' && event.purchaseOrders && event.purchaseOrders.length > 0 && (
-                        <div className="py-8 reveal-item delay-3">
+                        <div className="py-8 reveal-item delay-4">
                             <div className="space-y-4">
                                 <h4 className="font-semibold text-gray-800 dark:text-gray-100"><i className="fas fa-list-ol mr-2 text-gray-500"></i>Ordenes de compra solicitadas:</h4>
                                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -108,7 +128,7 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                         </div>
                     )}
 
-                    <div className="reveal-item delay-4">
+                    <div className="reveal-item delay-5">
                         {(event.documentIds.length > 0) && (
                             <div className="py-8 space-y-8">
                                 <div>
