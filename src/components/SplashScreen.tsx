@@ -26,14 +26,14 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onStart }) => {
       <div className="absolute bottom-0 right-0 translate-x-1/3 translate-y-1/3 w-96 h-96 bg-blue-200/40 rounded-full filter blur-3xl opacity-50 animate-pulse-slow delay-2s"></div>
 
       <div className="w-full max-w-5xl text-center z-10">
-        
+
         {/* Hospital Logo */}
         <div className="mb-8 animate-float">
-            <img src="https://fundacionhcgdl.org/wp-content/uploads/HospitalCivilGdl.png" alt="Logo Hospital Civil de Guadalajara" className="mx-auto h-24 object-contain" />
+            <img src="https://fundacionhcgdl.org/wp-content/uploads/HospitalCivilGdl.png" alt="Logo Hospital Civil de Guadalajara" className="mx-auto h-32 object-contain" />
         </div>
 
         <div className="mb-12 fade-in-up delay-200ms">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
+          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-800">
             Análisis de Controversia
           </h1>
           <div className="mt-6 text-lg md:text-xl text-gray-600 flex flex-col md:flex-row items-center justify-center gap-x-4">
@@ -44,7 +44,6 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onStart }) => {
         </div>
 
         <div className="bg-white/60 backdrop-blur-md border border-gray-200/80 rounded-2xl p-6 md:p-8 mb-12 shadow-sm fade-in-up delay-400ms">
-            <h2 className="text-lg font-bold text-gray-700 mb-6">Detalles del Caso</h2>
             <div className="flex flex-wrap justify-center gap-4 md:gap-6">
                 <DetailCard icon="fa-gavel" title="Proceso" delay="fade-in-up delay-600ms">
                     Licitación Pública Nacional LPN22/2024
@@ -68,9 +67,6 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onStart }) => {
         </div>
 
       </div>
-      <footer className="absolute bottom-6 text-xs text-gray-400 z-10">
-        Una Herramienta de Análisis Cognitivo
-      </footer>
     </div>
   );
 };
