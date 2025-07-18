@@ -57,6 +57,13 @@ export const caseFileData: CaseFile = {
       date: '2025-05-26', 
       type: 'Oficio', 
       url: 'https://drive.google.com/file/d/1Qess65Vsw5ZA4pCrXmQeBAhSCJXFP9NY/view?usp=sharing'
+    },
+    {
+      id: 'doc-conciliacion-inicio',
+      name: 'Oficio Inicio de Conciliación',
+      date: '2024-11-04',
+      type: 'Oficio',
+      url: 'https://drive.google.com/file/d/1hxcKax-r7IalHdd91FGVIhntqPWsd1ls/view?usp=sharing'
     }
   ],
   events: [
@@ -77,9 +84,9 @@ export const caseFileData: CaseFile = {
     {
       id: 'evt-conciliacion-01',
       date: '2024-11-04',
-      title: 'CONCILIACIÓN-CONC.05/2024',
+      title: 'CONCILIACIÓN-CONC. 05/2025',
       party: 'Análisis',
-      documentIds: [],
+      documentIds: ['doc-conciliacion-inicio'],
       description: []
     },
     {
