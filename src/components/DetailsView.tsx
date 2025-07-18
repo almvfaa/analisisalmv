@@ -187,12 +187,12 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                 </div>
 
                 <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-                    {tourStep < tourSize - 1 ? (
+                    {tourStep < tourSize - 1 && activeTab === 'docs' ? (
                         <button onClick={onNextStep} className={`w-full flex items-center p-4 font-bold rounded-lg text-left group text-lg text-white ${colors.dot} transition-opacity hover:opacity-90`}>
                             <span className="flex-grow">Siguiente Hecho</span>
                             <i className="fas fa-arrow-right ml-2 transition-transform transform group-hover:translate-x-2"></i>
                         </button>
-                    ) : (
+                    ) : tourStep >= tourSize - 1 ? (
                         <div className="text-center p-2">
                             <p className="text-gray-600 dark:text-gray-400 mb-3 text-sm">Has llegado al final de la línea de tiempo.</p>
                             <button onClick={onRestart} className="flex items-center justify-center w-full sm:w-auto sm:mx-auto px-5 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
@@ -200,6 +200,8 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                                 Reiniciar Análisis
                             </button>
                         </div>
+                    ) : (
+                        <div className="h-[68px]"></div> // Placeholder para mantener la altura
                     )}
                 </div>
             </div>
