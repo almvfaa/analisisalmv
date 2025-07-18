@@ -38,7 +38,7 @@ export const getEventDisplayDetails = (event: { party: Party, title: string }) =
 };
 
 export const simpleExplanations: Record<string, string> = {
-    'evt-intro-01': "La <strong>Coordinación General Jurídica</strong> señala al <strong>Almacén de Víveres</strong> como el área responsable de que el procedimiento de conciliación, con número de expediente CONC.05/2024, se encuentre detenido y sin resolución debido a que la información presentada sobre la situación de las órdenes de compra es insuficiente, discordante y en algunos casos nula.",
+    'evt-intro-01': "Debemos partir el presente análisis de dos premisas concebidas como procesos distintos e independientes uno del otro, y prueba fehaciente de ello es que cada uno tiene su procedimiento que delimita su esfera jurídica y su ámbito de aplicación. Si bien es cierto que esta confusión de procesos pudiera tener sentido debido a que el sujeto y objeto son los mismos, es decir, el mismo proveedor y el mismo contrato son susceptibles de dar inicio a ambos procedimientos, esto no es justificación para pretender ejecutarlos por la misma vía, en atención al principio de especialidad de la ley, al principio de exacta aplicación de la ley, al principio de legalidad, al principio de seguridad jurídica, en el principio prohibitivo de aplicar penas por simple analogía, en el principio de administrar justicia por leyes e instancias previamente establecidas, entre muchos otros más de esta misma jerarquía constitucional, imperativos categóricos que no dan lugar a interpretación contraria alguna.",
     'evt-real-01': "La oficina legal le pregunta formalmente al almacén: 'Oye, necesito que me digas qué pasó exactamente con estas órdenes de compra.'",
     'evt-real-03': "Como pasó el tiempo y no se resolvió, la oficina legal insiste y vuelve a pedir la información sobre un nuevo grupo de órdenes.",
     'evt-real-02': "El almacén contesta la segunda solicitud con un informe detallado para aclarar la situación de cada orden.",
@@ -72,7 +72,7 @@ export const documentGuides: Record<string, { description: string; points: strin
 export const tourPath = ['evt-intro-01', 'evt-real-01', 'evt-real-03', 'evt-real-02', 'evt-real-04', 'evt-real-05'];
 
 export const tourDescriptions: Record<string, string> = {
-    'evt-intro-01': "Empecemos por el principio. Este es el contexto general que da origen a la controversia.",
+    'evt-intro-01': "El Almacén de Víveres estima que la Coordinación General Jurídica está realizando una superposición indebida del proceso de penalización por atraso en la entrega, dentro del contexto de una conciliación.",
     'evt-real-01': "La Coordinación Jurídica (CGJ) inicia el proceso con una primera solicitud de información.",
     'evt-real-03': "Meses después, la CGJ envía una segunda solicitud, indicando que el problema persiste.",
     'evt-real-02': "El Almacén responde a la segunda solicitud, adjuntando un informe detallado. Revísalo y continúa.",
