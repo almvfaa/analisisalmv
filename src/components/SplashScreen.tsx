@@ -27,6 +27,11 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onStart }) => {
 
       <div className="w-full max-w-5xl text-center z-10">
         
+        {/* Hospital Logo */}
+        <div className="mb-10">
+            <img src="https://fundacionhcgdl.org/wp-content/uploads/HospitalCivilGdl.png" alt="Logo Hospital Civil de Guadalajara" className="mx-auto h-16 object-contain" />
+        </div>
+
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
             Análisis de Controversia
