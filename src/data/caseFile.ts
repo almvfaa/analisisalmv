@@ -53,10 +53,7 @@ export const caseFileData: CaseFile = {
       party: 'Análisis',
       documentIds: [],
       description: [
-        { label: '', content: '<strong>La Coordinación General Jurídica</strong> menciona que existe una controversia con la información relativa al cumplimiento de las ordenes de compra del proceso y proveedor en cuestión, misma que el Almacén de Víveres envía cuando se le requiere por oficio, siendo el responsable de que el proceso de conciliación actualmente se encuentre en espera y sin resolucion.' },
-        { label: '', content: 'A lo anterior, veamos objetivamente lo sucedido durante esta supuesta controversia para efecto de que se determine:' },
-        { label: '', content: '&nbsp;&nbsp;&nbsp;&nbsp;PRIMERO.- El valor en cuanto a la calidad y la oportunidad de la informacion contenida en las respuestas del Almacén de Víveres, en estricto apego a los principios de legalidad, seguridad juridica, asi como en seguimiento de los procesos internos aplicables.' },
-        { label: '', content: '&nbsp;&nbsp;&nbsp;&nbsp;SEGUNDO.- La solución que se le dará a este asunto y las acciones que tendra que realizar el Almacén de Víveres en caso de resultar responsable de lo que se le señala.' }
+        { label: '', content: 'Debemos partir el presente análisis de dos premisas concebidas como procesos distintos e independientes uno del otro, y prueba fehaciente de ello es que cada uno tiene su procedimiento que delimita su esfera jurídica y su ámbito de aplicación. Si bien es cierto que esta confusión de procesos pudiera tener sentido debido a que el sujeto y objeto son los mismos, es decir, el mismo proveedor y el mismo contrato son susceptibles de dar inicio a ambos procedimientos, esto no es justificación para pretender ejecutarlos por la misma vía, en atención al principio de especialidad de la ley, al principio de exacta aplicación de la ley, al principio de legalidad, al principio de seguridad jurídica, en el principio prohibitivo de aplicar penas por simple analogía, en el principio de administrar justicia por leyes e instancias previamente establecidas, entre muchos otros más de esta misma jerarquía constitucional, imperativos categóricos que no dan lugar a interpretación contraria alguna.' }
       ],
       followUp: {
         eventId: 'evt-real-01',
