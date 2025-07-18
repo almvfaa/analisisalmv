@@ -86,7 +86,7 @@ const App: React.FC<{ data: CaseFile }> = ({ data }) => {
                                 {selectedEvent && (
                                     <div className="flex items-center gap-x-3">
                                         <N170Icon className={`w-6 h-6 ${partyColorConfig[selectedEvent.party].text}`} />
-                                        <span className={`font-bold text-lg ${partyColorConfig[selectedEvent.party].text}`}>{partyFullNames[selectedEvent.party]}</span>
+                                        <span className="font-bold text-lg text-gray-900 dark:text-gray-100">{partyFullNames[selectedEvent.party]}</span>
                                     </div>
                                 )}
                             </div>
@@ -117,10 +117,11 @@ const App: React.FC<{ data: CaseFile }> = ({ data }) => {
                                                 <p className={`text-xs font-bold uppercase tracking-wider ${colors.text}`}>
                                                     {event.party !== 'Análisis' ? new Date(event.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Contexto'}
                                                 </p>
-                                                <h3 className="font-bold text-gray-800 dark:text-gray-100 mt-1 text-base">
-                                                    {fullTitle}
-                                                </h3>
-                                                {subTitle && <p className="text-sm text-gray-500 dark:text-gray-400">{subTitle}</p>}
+                                                {subTitle && (
+                                                    <h3 className="font-bold text-gray-800 dark:text-gray-100 mt-1 text-base">
+                                                        {subTitle}
+                                                    </h3>
+                                                )}
                                             </div>
                                         </div>
                                     )
