@@ -21,10 +21,19 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
 
     useEffect(() => {
         setIsRevealing(false);
-        setActiveTab('summary'); // Reset to summary tab on new event
+
+        // If the new event is not 'Análisis' and the current tab is 'legal', reset to 'summary'
+        if (event?.party !== 'Análisis' && activeTab === 'legal') {
+            setActiveTab('summary');
+        } else if (!activeTab || activeTab === 'legal') {
+            // Default to summary tab on new event if not otherwise set
+            setActiveTab('summary');
+        }
+        
         const timer = setTimeout(() => {
             setIsRevealing(true);
         }, 100);
+        
         return () => clearTimeout(timer);
     }, [event?.id]);
 
@@ -63,21 +72,18 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
         <div className={`flex-grow flex flex-col bg-white dark:bg-gray-800/50 ${isAnalisis ? `border-t-2 ${colors.border}` : `border-t-4 ${colors.border}`} ${isRevealing ? 'is-revealing' : ''} ${gammaActive && event ? 'gamma-target' : ''}`}
              style={(gammaActive && event) ? { '--pulse-color': `var(--party-${event.party.toLowerCase()})` } as React.CSSProperties : {}}>
             
-            {/* --- Progress Bar --- */}
             <div className="w-full bg-gray-200 dark:bg-gray-700 h-1.5">
                 <div className={`h-1.5 rounded-r-full ${colors.bg.replace('/10', '')}`} style={{ width: `${progressPercentage}%`, transition: 'width 0.5s ease-out' }}></div>
             </div>
 
             <div className="flex flex-col flex-grow">
-                {/* --- Tab Navigation --- */}
                 <div className="flex border-b border-gray-200 dark:border-gray-700">
                     <TabButton tab="summary" label="Resumen" icon="fa-lightbulb" />
-                    <TabButton tab="legal" label="Marco Normativo" icon="fa-scale-balanced" />
+                    {isAnalisis && <TabButton tab="legal" label="Marco Normativo" icon="fa-scale-balanced" />}
                     <TabButton tab="analysis" label="Análisis del Hecho" icon="fa-file-alt" />
                     <TabButton tab="docs" label="Documentos" icon="fa-paperclip" />
                 </div>
 
-                {/* --- Tab Content --- */}
                 <div className="flex-grow overflow-y-auto p-6 lg:p-8">
                     <div key={activeTab} className="fade-in">
                         {activeTab === 'summary' && (
@@ -87,14 +93,29 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                             </div>
                         )}
 
-                        {activeTab === 'legal' && (
-                           <div className="bg-sky-50 dark:bg-sky-950/50 border-l-4 border-sky-500 p-4 rounded-r-lg">
-                               <p className="font-semibold text-sky-800 dark:text-sky-100">Marco Normativo Aplicable</p>
-                               <ul className="mt-2 list-disc list-inside text-sm text-sky-700 dark:text-sky-300 space-y-1">
-                                 <li>Ley de Adquisiciones, Arrendamientos y Servicios del Sector Público.</li>
-                                 <li>Reglamento de la Ley de Adquisiciones.</li>
-                                 <li>Políticas, Bases y Lineamientos en Materia de Adquisiciones.</li>
-                               </ul>
+                        {activeTab === 'legal' && isAnalisis && (
+                           <div className="space-y-4">
+                               <div className="p-4 rounded-lg bg-gray-100 dark:bg-gray-700/50">
+                                   <h4 className="font-bold text-gray-800 dark:text-gray-100">Nivel Federal</h4>
+                                   <ul className="mt-2 list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 pl-2">
+                                     <li><span className="font-semibold">Constitución Política de los Estados Unidos Mexicanos:</span> Artículo 134.</li>
+                                     <li>Ley de Adquisiciones, Arrendamientos y Servicios del Sector Público.</li>
+                                     <li>Reglamento de la Ley de Adquisiciones, Arrendamientos y Servicios del Sector Público.</li>
+                                   </ul>
+                               </div>
+                               <div className="p-4 rounded-lg bg-gray-100 dark:bg-gray-700/50">
+                                   <h4 className="font-bold text-gray-800 dark:text-gray-100">Nivel Estatal (Jalisco)</h4>
+                                   <ul className="mt-2 list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 pl-2">
+                                     <li>Ley de Compras Gubernamentales, Enajenaciones y Contratación de Servicios del Estado de Jalisco y sus Municipios.</li>
+                                     <li>Reglamento de la Ley de Compras Gubernamentales del Estado de Jalisco.</li>
+                                   </ul>
+                               </div>
+                               <div className="p-4 rounded-lg bg-gray-100 dark:bg-gray-700/50">
+                                   <h4 className="font-bold text-gray-800 dark:text-gray-100">Nivel Institucional</h4>
+                                   <ul className="mt-2 list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 pl-2">
+                                     <li>Políticas, Bases y Lineamientos (POBALINES) de la entidad convocante.</li>
+                                   </ul>
+                               </div>
                            </div>
                         )}
                         
@@ -154,7 +175,6 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                     </div>
                 </div>
 
-                {/* --- Navigation Buttons --- */}
                 <div className="p-4 border-t border-gray-200 dark:border-gray-700">
                     {tourStep < tourSize - 1 ? (
                         <button onClick={onNextStep} className="neuro-button w-full flex items-center p-4 font-bold rounded-lg text-left group text-lg">

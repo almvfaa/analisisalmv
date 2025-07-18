@@ -97,7 +97,7 @@ const App: React.FC<{ data: CaseFile }> = ({ data }) => {
                                 {filteredEvents.length > 0 ? filteredEvents.map(event => {
                                     const colors = partyColorConfig[event.party];
                                     const isSelected = selectedEvent?.id === event.id;
-                                    const { fullTitle, subTitle } = getEventDisplayDetails(event);
+                                    const { subTitle } = getEventDisplayDetails(event);
                                     return (
                                         <div key={event.id} className="relative mb-6 group">
                                             <div 
@@ -108,10 +108,10 @@ const App: React.FC<{ data: CaseFile }> = ({ data }) => {
                                             </div>
                                             <div 
                                                 onClick={() => handleSelectEvent(event.id)} 
-                                                className={`ml-16 p-4 rounded-lg cursor-pointer border-2 transition-all duration-200 ${gammaMode && !isSelected ? 'gamma-distractor' : ''} ${
+                                                className={`ml-16 p-4 rounded-lg cursor-pointer border-l-[6px] transition-all duration-200 ${colors.border} ${gammaMode && !isSelected ? 'gamma-distractor' : ''} ${
                                                     isSelected 
-                                                    ? `${colors.border} ${colors.bg} shadow-md` 
-                                                    : 'border-transparent bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700/50 hover:border-gray-300 dark:hover:border-gray-600'
+                                                    ? `${colors.bg} shadow-md` 
+                                                    : 'bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700/50'
                                                 }`}
                                             >
                                                 <p className={`text-xs font-bold uppercase tracking-wider ${colors.text}`}>
