@@ -78,37 +78,43 @@ const App: React.FC<{ data: CaseFile }> = ({ data }) => {
 
                             {/* Scrollable List */}
                             <div className="relative flex-grow overflow-y-auto p-6">
-                                <div className="relative border-l-2 border-gray-200 dark:border-gray-700 ml-3">
-                                    {filteredEvents.length > 0 ? filteredEvents.map(event => {
-                                        const colors = partyColorConfig[event.party];
-                                        const isSelected = selectedEvent?.id === event.id;
-                                        const { fullTitle, subTitle } = getEventDisplayDetails(event);
-                                        return (
-                                            <div key={event.id} className={`mb-6 ml-8 group ${gammaMode ? (isSelected ? '' : 'gamma-distractor') : ''}`}>
-                                                <span
-                                                    className={`absolute -left-[10px] flex items-center justify-center w-5 h-5 rounded-full ring-4 ring-white dark:ring-gray-800 transition-all duration-300 ${isSelected ? colors.dot : 'bg-gray-300 dark:bg-gray-600'} ${gammaMode && isSelected ? 'gamma-target' : ''}`}
-                                                    style={(gammaMode && isSelected) ? { '--pulse-color': `var(--party-${getPartyVarName(event.party)})` } as React.CSSProperties : undefined}
-                                                >
-                                                    <N170Icon className={`text-xs ${isSelected ? 'text-white' : 'text-gray-600 dark:text-gray-300'}`} />
-                                                </span>
-                                                <div onClick={() => handleSelectEvent(event.id)} className={`p-3 rounded-lg transition-colors duration-200 cursor-pointer ${isSelected ? colors.bg : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'}`}>
-                                                    <span className={`text-sm font-semibold ${colors.text}`}>
-                                                        {event.party !== 'Análisis' ? new Date(event.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Contexto'}
-                                                    </span>
-                                                    <h3 className="font-bold text-gray-800 dark:text-gray-100 mt-1">
-                                                        {fullTitle}
-                                                    </h3>
-                                                    {subTitle && <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{subTitle}</p>}
-                                                </div>
+                                <div className="absolute top-6 bottom-6 left-9 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+                                {filteredEvents.length > 0 ? filteredEvents.map(event => {
+                                    const colors = partyColorConfig[event.party];
+                                    const isSelected = selectedEvent?.id === event.id;
+                                    const { fullTitle, subTitle } = getEventDisplayDetails(event);
+                                    return (
+                                        <div key={event.id} className="relative mb-6 group">
+                                            <div 
+                                                className={`absolute top-3 left-0 flex items-center justify-center w-5 h-5 rounded-full ring-4 ring-white dark:ring-gray-800 transition-all duration-300 transform -translate-x-1/2 ml-9 ${isSelected ? colors.dot : 'bg-gray-300 dark:bg-gray-600'} ${gammaMode && isSelected ? 'gamma-target' : ''}`}
+                                                style={(gammaMode && isSelected) ? { '--pulse-color': `var(--party-${getPartyVarName(event.party)})` } as React.CSSProperties : undefined}
+                                            >
+                                                <N170Icon className={`text-xs ${isSelected ? 'text-white' : 'text-gray-600 dark:text-gray-300'}`} />
                                             </div>
-                                        )
-                                    }) : (
-                                        <div className="text-center py-10 px-4">
-                                            <i className="fas fa-stream text-3xl text-gray-400 dark:text-gray-500 mb-2"></i>
-                                            <p className="text-gray-500 dark:text-gray-400">No hay eventos que coincidan con los filtros actuales.</p>
+                                            <div 
+                                                onClick={() => handleSelectEvent(event.id)} 
+                                                className={`ml-16 p-4 rounded-lg cursor-pointer border-2 transition-all duration-200 ${gammaMode && !isSelected ? 'gamma-distractor' : ''} ${
+                                                    isSelected 
+                                                    ? `${colors.border} ${colors.bg} shadow-md` 
+                                                    : 'border-transparent bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700/50 hover:border-gray-300 dark:hover:border-gray-600'
+                                                }`}
+                                            >
+                                                <p className={`text-xs font-bold uppercase tracking-wider ${colors.text}`}>
+                                                    {event.party !== 'Análisis' ? new Date(event.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Contexto'}
+                                                </p>
+                                                <h3 className="font-bold text-gray-800 dark:text-gray-100 mt-1 text-base">
+                                                    {fullTitle}
+                                                </h3>
+                                                {subTitle && <p className="text-sm text-gray-500 dark:text-gray-400">{subTitle}</p>}
+                                            </div>
                                         </div>
-                                    )}
-                                </div>
+                                    )
+                                }) : (
+                                    <div className="text-center py-10 px-4">
+                                        <i className="fas fa-stream text-3xl text-gray-400 dark:text-gray-500 mb-2"></i>
+                                        <p className="text-gray-500 dark:text-gray-400">No hay eventos que coincidan con los filtros actuales.</p>
+                                    </div>
+                                )}
                             </div>
                         </aside>
 
