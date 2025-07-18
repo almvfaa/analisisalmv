@@ -1,6 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import type { Document, TimelineEvent } from '../types/types';
-import { partyColorConfig, simpleExplanations, tourDescriptions, KEY_OCS, getFileIcon } from '../config/constants';
+import { partyColorConfig, simpleExplanations, tourDescriptions, KEY_OCS, getFileIcon, legalFramework } from '../config/constants';
+
+// --- Sub-components for Legal Framework ---
+const ArticlePill: React.FC<{ text: string }> = ({ text }) => (
+    <span className="inline-block bg-gray-200 dark:bg-gray-600/80 rounded-full px-3 py-1 text-xs font-medium text-gray-700 dark:text-gray-200">
+        {text}
+    </span>
+);
+
+const AccordionItem: React.FC<{ category: typeof legalFramework[0], isInitiallyOpen?: boolean }> = ({ category, isInitiallyOpen = false }) => {
+    const [isOpen, setIsOpen] = useState(isInitiallyOpen);
+
+    return (
+        <div className="border-b border-gray-200 dark:border-gray-700">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full flex justify-between items-center p-4 text-left hover:bg-gray-100 dark:hover:bg-gray-700/50 focus:outline-none"
+            >
+                <div className="flex items-center gap-4">
+                    <i className={`fas ${category.icon} w-5 text-center text-teal-600 dark:text-teal-400`}></i>
+                    <span className="font-bold text-gray-800 dark:text-gray-100">{category.category}</span>
+                </div>
+                <i className={`fas fa-chevron-down transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}></i>
+            </button>
+            {isOpen && (
+                <div className="p-4 bg-gray-50 dark:bg-gray-900/50">
+                    <div className="space-y-4">
+                        {category.items.map((item, index) => (
+                            <div key={index}>
+                                <h4 className="font-semibold text-gray-700 dark:text-gray-200">{item.name}</h4>
+                                <div className="mt-2 flex flex-wrap gap-2">
+                                    {item.articles.map((article, i) => <ArticlePill key={i} text={article} />)}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
 
 interface DetailsViewProps {
     event: TimelineEvent | null;
@@ -21,21 +62,14 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
 
     useEffect(() => {
         setIsRevealing(false);
-
-        // If the new event is not 'Análisis' and the current tab is 'legal', reset to 'summary'
         if (event?.party !== 'Análisis' && activeTab === 'legal') {
             setActiveTab('summary');
-        } else if (!activeTab || activeTab === 'legal') {
-            // Default to summary tab on new event if not otherwise set
+        } else if (!activeTab) {
             setActiveTab('summary');
         }
-        
-        const timer = setTimeout(() => {
-            setIsRevealing(true);
-        }, 100);
-        
+        const timer = setTimeout(() => setIsRevealing(true), 100);
         return () => clearTimeout(timer);
-    }, [event?.id]);
+    }, [event?.id, activeTab]);
 
     if (!event) {
         return (
@@ -76,7 +110,7 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                 <div className={`h-1.5 rounded-r-full ${colors.bg.replace('/10', '')}`} style={{ width: `${progressPercentage}%`, transition: 'width 0.5s ease-out' }}></div>
             </div>
 
-            <div className="flex flex-col flex-grow">
+            <div className="flex flex-col flex-grow min-h-0">
                 <div className="flex border-b border-gray-200 dark:border-gray-700">
                     <TabButton tab="summary" label="Resumen" icon="fa-lightbulb" />
                     {isAnalisis && <TabButton tab="legal" label="Marco Normativo" icon="fa-scale-balanced" />}
@@ -84,8 +118,8 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                     <TabButton tab="docs" label="Documentos" icon="fa-paperclip" />
                 </div>
 
-                <div className="flex-grow overflow-y-auto p-6 lg:p-8">
-                    <div key={activeTab} className="fade-in">
+                <div className="flex-grow overflow-y-auto">
+                    <div key={activeTab} className="fade-in p-6 lg:p-8">
                         {activeTab === 'summary' && (
                             <div className="bg-[var(--focus-cognitive)] border-l-4 border-[var(--focus-cognitive-border)] p-4 rounded-r-lg">
                                 <p className="text-[var(--text-main)] opacity-90" dangerouslySetInnerHTML={{ __html: simpleExplanations[event.id] }}></p>
@@ -93,28 +127,10 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                         )}
 
                         {activeTab === 'legal' && isAnalisis && (
-                           <div className="space-y-4">
-                               <div className="p-4 rounded-lg bg-gray-100 dark:bg-gray-700/50">
-                                   <h4 className="font-bold text-gray-800 dark:text-gray-100">Nivel Federal</h4>
-                                   <ul className="mt-2 list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 pl-2">
-                                     <li><span className="font-semibold">Constitución Política de los Estados Unidos Mexicanos:</span> Artículo 134.</li>
-                                     <li>Ley de Adquisiciones, Arrendamientos y Servicios del Sector Público.</li>
-                                     <li>Reglamento de la Ley de Adquisiciones, Arrendamientos y Servicios del Sector Público.</li>
-                                   </ul>
-                               </div>
-                               <div className="p-4 rounded-lg bg-gray-100 dark:bg-gray-700/50">
-                                   <h4 className="font-bold text-gray-800 dark:text-gray-100">Nivel Estatal (Jalisco)</h4>
-                                   <ul className="mt-2 list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 pl-2">
-                                     <li>Ley de Compras Gubernamentales, Enajenaciones y Contratación de Servicios del Estado de Jalisco y sus Municipios.</li>
-                                     <li>Reglamento de la Ley de Compras Gubernamentales del Estado de Jalisco.</li>
-                                   </ul>
-                               </div>
-                               <div className="p-4 rounded-lg bg-gray-100 dark:bg-gray-700/50">
-                                   <h4 className="font-bold text-gray-800 dark:text-gray-100">Nivel Institucional</h4>
-                                   <ul className="mt-2 list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 pl-2">
-                                     <li>Políticas, Bases y Lineamientos (POBALINES) de la entidad convocante.</li>
-                                   </ul>
-                               </div>
+                           <div className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                               {legalFramework.map((category, index) => (
+                                   <AccordionItem key={index} category={category} isInitiallyOpen={index < 2} />
+                               ))}
                            </div>
                         )}
                         
@@ -174,7 +190,7 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                     </div>
                 </div>
 
-                <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+                <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
                     {tourStep < tourSize - 1 ? (
                         <button onClick={onNextStep} className="neuro-button w-full flex items-center p-4 font-bold rounded-lg text-left group text-lg">
                             <span className="flex-grow">Siguiente Hecho</span>
