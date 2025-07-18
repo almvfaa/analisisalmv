@@ -2,6 +2,20 @@ import type { CaseFile } from '../types';
 
 export const caseFileData: CaseFile = {
   documents: [
+    {
+      id: 'doc-bases-lpn',
+      name: 'Bases de la Licitación LPN 22/2024',
+      date: '2024-01-01',
+      type: 'PDF',
+      url: 'https://drive.google.com/file/d/1iy-bppMJG4ERDCQAzq-MzVFoO6elwyxl/view?usp=sharing'
+    },
+    {
+      id: 'doc-contrato-lpn',
+      name: 'Contrato LPN22/2024-01',
+      date: '2024-01-01',
+      type: 'PDF',
+      url: 'https://drive.google.com/file/d/11R0qT1hqvmLKFsqLAFXgSRDwE0NL2pFb/view?usp=sharing'
+    },
     { 
       id: 'doc-cgj-01', 
       name: 'Oficio CGJ PE/11333/2024', 
@@ -51,7 +65,7 @@ export const caseFileData: CaseFile = {
       date: '2024-11-04',
       title: 'INTRODUCCIÓN',
       party: 'Análisis',
-      documentIds: [],
+      documentIds: ['doc-bases-lpn', 'doc-contrato-lpn'],
       description: [
         { label: '', content: 'Debemos partir el presente análisis de dos premisas concebidas como procesos distintos e independientes uno del otro, y prueba fehaciente de ello es que cada uno tiene su procedimiento que delimita su esfera jurídica y su ámbito de aplicación. Si bien es cierto que esta confusión de procesos pudiera tener sentido debido a que el sujeto y objeto son los mismos, es decir, el mismo proveedor y el mismo contrato son susceptibles de dar inicio a ambos procedimientos, esto no es justificación para pretender ejecutarlos por la misma vía, en atención al principio de especialidad de la ley, al principio de exacta aplicación de la ley, al principio de legalidad, al principio de seguridad jurídica, en el principio prohibitivo de aplicar penas por simple analogía, en el principio de administrar justicia por leyes e instancias previamente establecidas, entre muchos otros más de esta misma jerarquía constitucional, imperativos categóricos que no dan lugar a interpretación contraria alguna.' }
       ],
