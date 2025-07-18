@@ -87,54 +87,66 @@ export const KEY_OCS = {
 
 export const legalFramework = [
     {
-        category: 'Marco Jurídico Específico del Hospital Civil',
+        category: 'Normativa Orgánica Propia del Hospital Civil',
         icon: 'fa-hospital-user',
         items: [
-            { name: 'Ley Orgánica del OPD Hospital Civil de Guadalajara', articles: ['1, 2, 3, 4', '5', '7', '8', '12', '17', '23'] },
-            { name: 'Estatuto Orgánico del OPD Hospital Civil de Guadalajara', articles: ['Definición de atribuciones de Direcciones y Subdirecciones'] },
-            { name: 'Reglamento de Adquisiciones, Arrendamientos y Servicios del HCG', articles: ['Análisis completo requerido'] },
+            { name: 'Ley Orgánica del Organismo Público Descentralizado Hospital Civil de Guadalajara' },
+            { name: 'Estatuto Orgánico del Organismo Público Descentralizado Hospital Civil de Guadalajara' },
+            { name: 'Reglamento de Adquisiciones, Arrendamientos y Contratación de Servicios del Hospital Civil de Guadalajara' },
+            { name: 'Manual de Organización y Procedimientos del Hospital Civil de Guadalajara' },
+            { name: 'Código de Conducta de los Servidores Públicos del HCG' }
         ]
     },
     {
-        category: 'Normativa Federal',
-        icon: 'fa-landmark',
+        category: 'Leyes y Reglamentos de Contrataciones Públicas',
+        icon: 'fa-gavel',
         items: [
-            { name: 'Constitución Política de los Estados Unidos Mexicanos', articles: ['1', '4', '134'] },
-            { name: 'Ley de Adquisiciones, Arrendamientos y Servicios del Sector Público (LAASSP)', articles: ['1', '17', '18', '22', '25', '26', '26 Bis', '28', '29', '30-32', '33-35', '36-38', '40-47', '50', '56-A'] },
-            { name: 'Reglamento de la LAASSP', articles: ['29-31', '35', '39', '41-48', '50-57'] },
-            { name: 'Ley General de Salud', articles: ['3 IV', '17', '194 I', '197-198', '210', '212', '215', '368-393', '404 X, XII', '414-420'] },
-            { name: 'Ley General de Responsabilidades Administrativas', articles: ['7', '21', '25', '49-52', '54', '57-61', '65-70', '73'] },
-            { name: 'Código Civil Federal (Supletorio)', articles: ['1792-1859', '1910', '2104-2118'] },
+            { name: 'Ley de Adquisiciones, Arrendamientos y Servicios del Sector Público (Federal)' },
+            { name: 'Reglamento de la Ley de Adquisiciones, Arrendamientos y Servicios del Sector Público' },
+            { name: 'Ley de Compras Gubernamentales, Enajenaciones y Contratación de Servicios del Estado de Jalisco' },
+            { name: 'Reglamento de la Ley de Compras Gubernamentales de Jalisco' }
         ]
     },
     {
-        category: 'Normativa Estatal (Jalisco)',
-        icon: 'fa-map-marked-alt',
+        category: 'Marco Sanitario y de Calidad',
+        icon: 'fa-heart-pulse',
         items: [
-            { name: 'Ley de Compras Gubernamentales, Enajenaciones y Contratación de Servicios', articles: ['1, 4, 13, 16', '20-27', '47-64', '73-74', '98-99', '104-111'] },
-            { name: 'Reglamento de la Ley de Compras Gubernamentales', articles: ['1, 10, 11', '23, 32', '44-46', '56-59'] },
-            { name: 'Ley de Salud del Estado de Jalisco', articles: ['1-3', '248', '253', '256'] },
-            { name: 'Ley del Procedimiento Administrativo del Estado de Jalisco', articles: ['1, 2, 11-16', '63-66', '115-121'] },
-            { name: 'Ley de Justicia Administrativa del Estado de Jalisco', articles: ['1-4', '9-10', '29-30', '35-36', '71-72', '76'] },
+            { name: 'Ley General de Salud' },
+            { name: 'Ley de Salud del Estado de Jalisco' },
+            { name: 'Reglamento de Control Sanitario de Productos y Servicios' },
+            { name: 'Ley de Infraestructura de la Calidad (Base para NOMs)' },
+            { name: 'NOM-131-SSA1-2012: Fórmulas Lácteas' },
+            { name: 'NOM-251-SSA1-2009: Prácticas de Higiene' },
+            { name: 'NOM-051-SCFI/SSA1-2010: Etiquetado General' }
         ]
     },
     {
-        category: 'Normas Oficiales Mexicanas (NOMs)',
-        icon: 'fa-certificate',
+        category: 'Responsabilidades y Transparencia',
+        icon: 'fa-eye',
         items: [
-            { name: 'NOM-131-SSA1-2012 (Fórmulas Lácteas)', articles: ['5-10'] },
-            { name: 'NOM-251-SSA1-2009 (Prácticas de Higiene)', articles: ['5-8'] },
-            { name: 'NOM-051-SCFI/SSA1-2010 (Etiquetado General)', articles: ['4-5'] },
+            { name: 'Ley General de Responsabilidades Administrativas' },
+            { name: 'Ley de Transparencia y Acceso a la Información Pública de Jalisco' },
+            { name: 'Código Penal Federal (Delitos por Hechos de Corrupción)' }
         ]
     },
     {
-        category: 'Marco Transversal y Supletorio',
-        icon: 'fa-cogs',
+        category: 'Normativa Administrativa y Supletoria',
+        icon: 'fa-file-signature',
         items: [
-            { name: 'Ley General de los Derechos de Niñas, Niños y Adolescentes', articles: ['2, 6, 13 X', '43, 50 I, IV'] },
-            { name: 'Ley de Transparencia y Acceso a la Información (Jalisco)', articles: ['8 V', '23-24'] },
-            { name: 'Código Penal Federal', articles: ['212, 214, 215', '221, 222, 222 Bis'] },
-            { name: 'Ley General de Archivos', articles: ['1, 4, 6, 11-12, 21'] },
+            { name: 'Código Civil Federal (Supletorio a la LAASSP)' },
+            { name: 'Código Civil del Estado de Jalisco (Supletorio a la Ley de Compras estatal)' },
+            { name: 'Ley del Procedimiento Administrativo del Estado de Jalisco' },
+            { name: 'Ley de Justicia Administrativa del Estado de Jalisco' }
+        ]
+    },
+    {
+        category: 'Normativa Presupuestal y Hacendaria',
+        icon: 'fa-hand-holding-dollar',
+        items: [
+            { name: 'Constitución Política de los Estados Unidos Mexicanos (Artículo 134)' },
+            { name: 'Ley Federal de Presupuesto y Responsabilidad Hacendaria' },
+            { name: 'Ley del Presupuesto, Contabilidad y Gasto Público de Jalisco' },
+            { name: 'Código Fiscal de la Federación' }
         ]
     }
 ];

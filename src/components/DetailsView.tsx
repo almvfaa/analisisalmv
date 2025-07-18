@@ -3,12 +3,6 @@ import type { Document, TimelineEvent } from '../types/types';
 import { partyColorConfig, simpleExplanations, tourDescriptions, KEY_OCS, getFileIcon, legalFramework } from '../config/constants';
 
 // --- Sub-components for Legal Framework ---
-const ArticlePill: React.FC<{ text: string }> = ({ text }) => (
-    <span className="inline-block bg-gray-200 dark:bg-gray-600/80 rounded-full px-3 py-1 text-xs font-medium text-gray-700 dark:text-gray-200">
-        {text}
-    </span>
-);
-
 const AccordionItem: React.FC<{ category: typeof legalFramework[0], isInitiallyOpen?: boolean }> = ({ category, isInitiallyOpen = false }) => {
     const [isOpen, setIsOpen] = useState(isInitiallyOpen);
 
@@ -26,16 +20,13 @@ const AccordionItem: React.FC<{ category: typeof legalFramework[0], isInitiallyO
             </button>
             {isOpen && (
                 <div className="p-4 bg-gray-50 dark:bg-gray-900/50">
-                    <div className="space-y-4">
+                    <ul className="space-y-2">
                         {category.items.map((item, index) => (
-                            <div key={index}>
-                                <h4 className="font-semibold text-gray-700 dark:text-gray-200">{item.name}</h4>
-                                <div className="mt-2 flex flex-wrap gap-2">
-                                    {item.articles.map((article, i) => <ArticlePill key={i} text={article} />)}
-                                </div>
-                            </div>
+                             <li key={index} className="p-3 bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 text-sm text-gray-700 dark:text-gray-200">
+                                {item.name}
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 </div>
             )}
         </div>
@@ -129,7 +120,7 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                         {activeTab === 'legal' && isAnalisis && (
                            <div className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
                                {legalFramework.map((category, index) => (
-                                   <AccordionItem key={index} category={category} isInitiallyOpen={index < 2} />
+                                   <AccordionItem key={index} category={category} isInitiallyOpen={false} />
                                ))}
                            </div>
                         )}
