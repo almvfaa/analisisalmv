@@ -38,7 +38,7 @@ export const getEventDisplayDetails = (event: { party: Party, title: string }) =
 };
 
 export const simpleExplanations: Record<string, string> = {
-    'evt-intro-01': "La oficina legal y el almacén no se ponen de acuerdo sobre la información de unas entregas. Aquí se explica el origen del problema.",
+    'evt-intro-01': "La <strong>Coordinación General Jurídica</strong> señala al <strong>Almacén de Víveres</strong> como el área responsable de que el procedimiento de conciliación, con número de expediente CONC.05/2024, se encuentre detenido y sin resolución debido a que la información presentada sobre la situación de las órdenes de compra es insuficiente, discordante y en algunos casos nula.",
     'evt-real-01': "La oficina legal le pregunta formalmente al almacén: 'Oye, necesito que me digas qué pasó exactamente con estas órdenes de compra.'",
     'evt-real-03': "Como pasó el tiempo y no se resolvió, la oficina legal insiste y vuelve a pedir la información sobre un nuevo grupo de órdenes.",
     'evt-real-02': "El almacén contesta la segunda solicitud con un informe detallado para aclarar la situación de cada orden.",

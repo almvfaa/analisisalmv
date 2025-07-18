@@ -88,8 +88,7 @@ export const DetailsView: React.FC<DetailsViewProps> = ({ event, documents, tour
                     <div key={activeTab} className="fade-in">
                         {activeTab === 'summary' && (
                             <div className="bg-[var(--focus-cognitive)] border-l-4 border-[var(--focus-cognitive-border)] p-4 rounded-r-lg">
-                                <p className="font-semibold text-[var(--text-main)]">En Palabras Simples</p>
-                                <p className="mt-1 text-[var(--text-main)] opacity-90">{simpleExplanations[event.id]}</p>
+                                <p className="text-[var(--text-main)] opacity-90" dangerouslySetInnerHTML={{ __html: simpleExplanations[event.id] }}></p>
                             </div>
                         )}
 
