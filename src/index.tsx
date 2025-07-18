@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { caseFileData } from './data/caseFile';
 import type { CaseFile, Document, TimelineEvent } from './types/types';
 import { DetailsView } from './components/DetailsView';
+import { SplashScreen } from './components/SplashScreen';
 import { DocumentGuideModal, ThemeSwitcher, GammaModeSwitcher, N170Icon } from './components/UI';
 import { partyColorConfig, partyFullNames, getEventDisplayDetails, documentGuides, tourPath, getPartyVarName } from './config/constants';
 
@@ -10,6 +11,7 @@ import { partyColorConfig, partyFullNames, getEventDisplayDetails, documentGuide
 
 const App: React.FC<{ data: CaseFile }> = ({ data }) => {
     // --- ESTADO ---
+    const [analysisStarted, setAnalysisStarted] = useState(false);
     const [tourStep, setTourStep] = useState(0);
     const [theme, setTheme] = useState(() => typeof window !== 'undefined' ? localStorage.getItem('theme') || 'light' : 'light');
     const [guidedDoc, setGuidedDoc] = useState<Document | null>(null);
@@ -17,6 +19,11 @@ const App: React.FC<{ data: CaseFile }> = ({ data }) => {
 
     const handleRestartTour = () => {
         setTourStep(0);
+        setAnalysisStarted(false); // Also return to splash screen on full restart
+    };
+    
+    const handleStartAnalysis = () => {
+        setAnalysisStarted(true);
     };
 
     const handleSelectEvent = (eventId: string) => {
@@ -41,11 +48,15 @@ const App: React.FC<{ data: CaseFile }> = ({ data }) => {
     const sortedEvents = useMemo(() => [...data.events].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()), [data.events]);
 
     const filteredEvents = useMemo(() => {
+        if (!analysisStarted) return [];
         const visibleEventIds = tourPath.slice(0, tourStep + 1);
         return sortedEvents.filter(event => visibleEventIds.includes(event.id));
-    }, [sortedEvents, tourStep]);
+    }, [sortedEvents, tourStep, analysisStarted]);
 
-    const selectedEvent = useMemo(() => filteredEvents.find(event => event.id === tourPath[tourStep]) || filteredEvents[0] || null, [tourStep, filteredEvents]);
+    const selectedEvent = useMemo(() => {
+        if (!analysisStarted) return null;
+        return filteredEvents.find(event => event.id === tourPath[tourStep]) || filteredEvents[0] || null;
+    }, [tourStep, filteredEvents, analysisStarted]);
 
     // --- MANEJADORES DE EVENTOS ---
     const handleNextStep = () => {
@@ -57,9 +68,13 @@ const App: React.FC<{ data: CaseFile }> = ({ data }) => {
         setTourStep(prev => Math.min(prev + 1, tourPath.length - 1));
     };
 
+    if (!analysisStarted) {
+        return <SplashScreen onStart={handleStartAnalysis} />;
+    }
+
     return (
         <>
-            <div className="relative flex flex-col h-screen">
+            <div className="relative flex flex-col h-screen fade-in">
                 <GammaModeSwitcher isEnabled={gammaMode} setEnabled={setGammaMode} />
                 <ThemeSwitcher theme={theme} setTheme={setTheme} />
                 <main className="container mx-auto p-4 sm:p-6 lg:p-8 flex flex-col flex-grow">
@@ -112,7 +127,7 @@ const App: React.FC<{ data: CaseFile }> = ({ data }) => {
                                 }) : (
                                     <div className="text-center py-10 px-4">
                                         <i className="fas fa-stream text-3xl text-gray-400 dark:text-gray-500 mb-2"></i>
-                                        <p className="text-gray-500 dark:text-gray-400">No hay eventos que coincidan con los filtros actuales.</p>
+                                        <p className="text-gray-500 dark:text-gray-400">Iniciando análisis...</p>
                                     </div>
                                 )}
                             </div>
