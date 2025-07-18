@@ -33,13 +33,15 @@ export const partyFullNames: Record<Party, string> = {
 export const getEventDisplayDetails = (event: { party: Party, title: string }) => {
     const fullTitle = partyFullNames[event.party];
     const titleParts = event.title.split('-');
-    const subTitle = titleParts.length > 1 ? `${titleParts[1].charAt(0).toUpperCase() + titleParts[1].slice(1).toLowerCase()} ${titleParts[2] || ''}`.trim() : '';
+    const subTitle = titleParts.length > 1 ? 
+        (titleParts[1].includes('CONC') ? titleParts[1] : `${titleParts[1].charAt(0).toUpperCase() + titleParts[1].slice(1).toLowerCase()} ${titleParts[2] || ''}`.trim()) 
+        : '';
     return { fullTitle, subTitle };
 };
 
 export const simpleExplanations: Record<string, string> = {
     'evt-intro-01': "La <strong>Coordinación General Jurídica</strong> señala al <strong>Almacén de Víveres</strong> como el área responsable de que el procedimiento de conciliación, con número de expediente CONC.05/2024, se encuentre detenido y sin resolución debido a que la información presentada sobre la situación de las órdenes de compra es insuficiente, discordante y en algunos casos nula.",
-    'evt-conciliacion-01': "El procedimiento de conciliación se origina por el rechazo físico al proveedor de 4 facturas que intentaba tramitar su pago por la Coordinación General de Finanzas, relativas exclusivamente a la orden de compra 10403580",
+    'evt-conciliacion-01': "El procedimiento de conciliación se originó por el rechazo físico de cuatro facturas que el proveedor intentó tramitar para su pago ante la Coordinación General de Finanzas. Dichas facturas corresponden exclusivamente a la orden de compra 10403580.",
     'evt-real-01': "La confusión antes mencionada no fue ni es impedimento para que el Almacen de Viveres proporcione la información con oportunidad, veamos desde cuando se tiene información relativa a las ordenes de compra en cuestión",
     'evt-real-03': "Como pasó el tiempo y no se resolvió, la oficina legal insiste y vuelve a pedir la información sobre un nuevo grupo de órdenes.",
     'evt-real-02': "El almacén contesta la segunda solicitud con un informe detallado para aclarar la situación de cada orden.",
@@ -74,8 +76,8 @@ export const tourPath = ['evt-intro-01', 'evt-conciliacion-01', 'evt-real-01', '
 
 export const tourDescriptions: Record<string, string> = {
     'evt-intro-01': "El Almacén de Víveres estima que la Coordinación General Jurídica está realizando una superposición indebida del proceso de penalización por atraso en la entrega, dentro del contexto de una conciliación.",
-    'evt-conciliacion-01': "El procedimiento de conciliación se origina por el rechazo físico al proveedor de 4 facturas que intentaba tramitar su pago por la Coordinación General de Finanzas, relativas exclusivamente a la orden de compra 10403580",
-    'evt-real-01': "La Coordinación Jurídica (CGJ) inicia el proceso con una primera solicitud de información.",
+    'evt-conciliacion-01': "El procedimiento de conciliación se originó por el rechazo físico de cuatro facturas que el proveedor intentó tramitar para su pago ante la Coordinación General de Finanzas. Dichas facturas corresponden exclusivamente a la orden de compra 10403580.",
+    'evt-real-01': "La Coordinación General Jurídica emite un primer oficio requiriendo información relativa al proceso de determinación de las penalizaciones.",
     'evt-real-03': "Meses después, la CGJ envía una segunda solicitud, indicando que el problema persiste.",
     'evt-real-02': "El Almacén responde a la segunda solicitud, adjuntando un informe detallado. Revísalo y continúa.",
     'evt-real-04': "La CGJ no queda conforme y solicita una aclaración específica sobre el cálculo de penalizaciones.",
