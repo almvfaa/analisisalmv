@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { caseFileData } from './data/caseFile';
-import type { CaseFile, Document, TimelineEvent } from './types/types';
+import type { CaseFile, Document, TimelineEvent } from './types';
 import { DetailsView } from './components/DetailsView';
 import { SplashScreen } from './components/SplashScreen';
 import { DocumentGuideModal, ThemeSwitcher, GammaModeSwitcher, N170Icon } from './components/UI';
@@ -177,10 +177,10 @@ const App: React.FC<{ data: CaseFile }> = ({ data }) => {
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
-    const root = ReactDOM.createRoot(rootElement);
-    root.render(
+    ReactDOM.render(
         <React.StrictMode>
             <App data={caseFileData} />
-        </React.StrictMode>
+        </React.StrictMode>,
+        rootElement
     );
 }
