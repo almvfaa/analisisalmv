@@ -33,6 +33,14 @@ const App: React.FC<{ data: CaseFile }> = ({ data }) => {
         }
     };
 
+    const handleSelectDocument = (doc: Document) => {
+        if (documentGuides[doc.id]) {
+            setGuidedDoc(doc);
+        } else {
+            window.open(doc.url, '_blank', 'noopener,noreferrer');
+        }
+    };
+
     // --- EFECTOS ---
     useEffect(() => {
         const root = window.document.documentElement;
@@ -144,7 +152,7 @@ const App: React.FC<{ data: CaseFile }> = ({ data }) => {
                                     tourSize={tourPath.length}
                                     gammaActive={gammaMode}
                                     onNextStep={handleNextStep}
-                                    onSelectDocument={setGuidedDoc}
+                                    onSelectDocument={handleSelectDocument}
                                     onRestart={handleRestartTour}
                                 />
                             </div>
